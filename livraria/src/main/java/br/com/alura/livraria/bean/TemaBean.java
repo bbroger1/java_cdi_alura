@@ -1,11 +1,10 @@
 package br.com.alura.livraria.bean;
 
 import java.io.Serializable;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
-@ManagedBean
+@Named
 @SessionScoped
 public class TemaBean implements Serializable {
 	
