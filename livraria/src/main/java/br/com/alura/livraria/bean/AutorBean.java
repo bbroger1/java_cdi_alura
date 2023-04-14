@@ -7,8 +7,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.alura.livraria.dao.DAO;
 import br.com.alura.livraria.modelo.Autor;
+import br.com.rcssoft.rcssoft_lib.dao.DAO;
 
 @Named
 @RequestScoped

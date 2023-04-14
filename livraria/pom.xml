@@ -53,6 +53,11 @@
 			<artifactId>weld-servlet</artifactId>
 			<version>2.4.8.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>br.com.rcssoft</groupId>
+			<artifactId>rcssoft-lib</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
