@@ -4,4 +4,7 @@
      xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
      version="1.2" bean-discovery-mode="all">
 
+	<interceptors>
+		<class>br.com.rcssoft.rcssoft_lib.tx.GerenciadorDeTransacao</class>
+	</interceptors>
 </beans>

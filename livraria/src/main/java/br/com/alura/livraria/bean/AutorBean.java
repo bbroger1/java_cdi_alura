@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import br.com.alura.livraria.modelo.Autor;
 import br.com.rcssoft.rcssoft_lib.dao.DAO;
+import br.com.rcssoft.rcssoft_lib.tx.annotation.Transacional;
 
 @Named
 @RequestScoped
@@ -24,6 +25,14 @@ public class AutorBean implements Serializable {
 	public AutorBean(DAO<Autor> autorDao) {
 		this.autorDao = autorDao;
 	}
+	
+	public Autor getAutor() {
+		return autor;
+	}
+
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
 
 	public Integer getAutorId() {
 		return autorId;
@@ -37,9 +46,10 @@ public class AutorBean implements Serializable {
 		this.autor = autorDao.buscaPorId(autorId);
 	}
 
+	@Transacional
 	public String gravar() {
 		System.out.println("Gravando autor " + this.autor.getNome());
-
+		
 		if (this.autor.getId() == null) {
 			autorDao.adiciona(this.autor);
 		} else {
@@ -51,6 +61,7 @@ public class AutorBean implements Serializable {
 		return "livro?faces-redirect=true";
 	}
 
+	@Transacional
 	public void remover(Autor autor) {
 		System.out.println("Removendo autor " + autor.getNome());
 		autorDao.remove(autor);
@@ -58,13 +69,5 @@ public class AutorBean implements Serializable {
 
 	public List<Autor> getAutores() {
 		return autorDao.listaTodos();
-	}
-
-	public Autor getAutor() {
-		return autor;
-	}
-
-	public void setAutor(Autor autor) {
-		this.autor = autor;
 	}
 }
