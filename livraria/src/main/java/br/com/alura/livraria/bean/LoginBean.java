@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import br.com.alura.livraria.dao.UsuarioDao;
 import br.com.alura.livraria.modelo.Usuario;
+import br.com.rcssoft.rcssoft_lib.helper.MessageHelper;
 
 @Named
 @RequestScoped
@@ -19,10 +20,15 @@ public class LoginBean implements Serializable {
 	
 	private Usuario usuario = new Usuario();
 	private UsuarioDao usuarioDao;
+	private FacesContext context;
+
+	private MessageHelper helper;
 	
 	@Inject
-	public LoginBean(UsuarioDao usuarioDao) {
+	public LoginBean(UsuarioDao usuarioDao, FacesContext context, MessageHelper helper) {
 		this.usuarioDao = usuarioDao;
+		this.context = context;
+		this.helper = helper;
 	}
 
 	public Usuario getUsuario() {
@@ -32,15 +38,15 @@ public class LoginBean implements Serializable {
 	public String efetuaLogin() {
 		System.out.println("fazendo login do usuario " + this.usuario.getEmail());
 		
-		FacesContext context = FacesContext.getCurrentInstance();
 		boolean existe = usuarioDao.existe(this.usuario);
 		if(existe ) {
 			context.getExternalContext().getSessionMap().put("usuarioLogado", this.usuario);
 			return "livro?faces-redirect=true";
 		}
 		
-		context.getExternalContext().getFlash().setKeepMessages(true);
-		context.addMessage(null, new FacesMessage("Usuário não encontrado"));
+		helper
+			.onFlash()
+				.addMessage(new FacesMessage("Usuário não encontrado"));
 		
 		return "login?faces-redirect=true";
 	}
