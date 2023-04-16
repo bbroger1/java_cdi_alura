@@ -1,14 +1,24 @@
 package br.com.alura.livraria.tx;
 
-import javax.enterprise.inject.Specializes;
+import javax.annotation.Priority;
+import javax.enterprise.inject.Alternative;
+import javax.enterprise.inject.Typed;
+import javax.inject.Inject;
+import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
+import javax.persistence.EntityManager;
 
-import br.com.rcssoft.rcssoft_lib.tx.TransacionadoPadrao;
+import br.com.rcssoft.rcssoft_lib.tx.Transacionado;
 
-@Specializes
-public class MeuGerenciadorDeTransacao extends TransacionadoPadrao {
+@Alternative
+@Priority(Interceptor.Priority.APPLICATION)
+@Typed(Transacionado.class)
+public class MeuGerenciadorDeTransacao implements Transacionado {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
+	private EntityManager em;
 	
 	@Override
 	public Object executaTransacao(InvocationContext context) {
