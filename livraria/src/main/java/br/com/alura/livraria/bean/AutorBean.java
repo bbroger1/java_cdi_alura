@@ -3,16 +3,14 @@ package br.com.alura.livraria.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import br.com.alura.livraria.modelo.Autor;
 import br.com.rcssoft.rcssoft_lib.dao.DAO;
 import br.com.rcssoft.rcssoft_lib.tx.annotation.Transacional;
 
-@Named
-@RequestScoped
+@Model
 public class AutorBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

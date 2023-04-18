@@ -1,11 +1,10 @@
 package br.com.alura.livraria.bean;
 
 import java.io.Serializable;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 
-@Named
-@SessionScoped
+import br.com.rcssoft.rcssoft_lib.jsf.annotation.SessionModel;
+
+@SessionModel
 public class TemaBean implements Serializable {
 	
 	private static final long serialVersionUID = 3740536135286026768L;

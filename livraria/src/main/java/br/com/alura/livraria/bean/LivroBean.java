@@ -7,17 +7,15 @@ import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import br.com.alura.livraria.modelo.Autor;
 import br.com.alura.livraria.modelo.Livro;
 import br.com.rcssoft.rcssoft_lib.dao.DAO;
+import br.com.rcssoft.rcssoft_lib.jsf.annotation.ViewModel;
 import br.com.rcssoft.rcssoft_lib.tx.annotation.Transacional;
 
-@Named
-@ViewScoped
+@ViewModel
 public class LivroBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -54,6 +52,7 @@ public class LivroBean implements Serializable {
 	}
 
 	public List<Autor> getAutores() {
+		System.out.println("getAutores");
 		return autorDao.listaTodos();
 	}
 
@@ -67,6 +66,7 @@ public class LivroBean implements Serializable {
 
 	public void gravarAutor() {
 		Autor autor = autorDao.buscaPorId(this.autorId);
+		System.out.println(autor.getId());
 		this.livro.adicionaAutor(autor);
 		System.out.println("Escrito por: " + autor.getNome());
 	}
